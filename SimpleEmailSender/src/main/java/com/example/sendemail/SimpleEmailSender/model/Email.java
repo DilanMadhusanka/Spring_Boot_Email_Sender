@@ -13,11 +13,10 @@ public class Email {
 		
 	}
 	
-	public Email(String to, String messageSubject, String messageBody) {
+	public Email(String to, String messageSubject) {
 		super();
 		this.to = to;
 		this.messageSubject = messageSubject;
-		this.messageBody = messageBody;
 	}
 	public String getTo() {
 		return to;

@@ -47,16 +47,17 @@ public class SimpleEmailController {
 	}
 	
 	@RequestMapping("/sendEmailAttachement")
-	public void sendEmailAttachement(@RequestParam String email, @RequestParam String messageSubject, @RequestParam String messageBody) throws MessagingException {
+	public void sendEmailAttachement(@RequestParam String email, @RequestParam String messageSubject) throws MessagingException {
 		
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 		
-		Email emailModel = new Email(email,messageSubject, messageBody);
+		Email emailModel = new Email(email,messageSubject);
 		
 		helper.setTo(emailModel.getTo());
 		helper.setSubject(emailModel.getMessageSubject());
-		helper.setText(emailModel.getMessageBody());
+//		helper.setText(emailModel.getMessageBody());
+		helper.setText("<p><a href='https://www.w3schools.com'>go to W3school</a></>", true);
 		
 		ClassPathResource path = new ClassPathResource("clouds.jpg");
 		helper.addAttachment("clouds.jpg", path);
